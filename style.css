@@ -17,3 +17,23 @@ body {
   justify-content: center;
   
 }
+
+.btn {
+  padding: 8px 12px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #f8f8f8;
+  color: #121212;
+  font-size: 1.4rem;
+}
+.btn:hover {
+  padding: 8px 12px;
+  outline: none;
+  border-radius: 5px;
+  background: #121212;
+  color: #f4f4f4;
+  border: 1px solid rgb(240, 99, 99);
+  font-size: 1.4rem;
+  transform: scale(0.99);
+}
