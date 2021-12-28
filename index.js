@@ -3,6 +3,12 @@
 const canvas = document.querySelector('.canvas1');
 const ctx = canvas.getContext('2d');
 
+// setting a widht, height, gap and x, y variables
+const width = 60;
+const height = 60;
+const gap = 20;
+let x, y;
+
 // draw on canvas
 ctx.fillStyle = 'aqua';
 ctx.fillRect(150, 150, 300, 300);
@@ -14,11 +20,8 @@ ctx.stroke();
 
 for (let i = 0; i < 5; i++) {
   for (let j = 0; j < 5; j++) {
-    let width = 60;
-    let height = 60;
-    let gap = 20;
-    let x = 100 + (width + gap) * i;
-    let y = 100 + (height + gap) * j;
+    x = 100 + (width + gap) * i;
+    y = 100 + (height + gap) * j;
 
     ctx.beginPath();
     ctx.rect(x, y, width, height);
@@ -50,6 +53,9 @@ ctx.lineWidth = 8;
 ctx.beginPath();
 ctx.arc(300, 300, 100, 0, Math.PI * 2);
 ctx.stroke();
+
+const gravity = 9.81;
+let velocity = 0;
 
 // arrays are the same as lists
 
