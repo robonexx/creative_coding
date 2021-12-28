@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,700&display=swap');
+@import "header.css"; /* Using a string */
 
 * {
   margin: 0;
@@ -16,6 +17,10 @@ body {
   align-items: center;
   justify-content: center;
   
+}
+
+#body2 {
+  background-color: #f8f8f8;
 }
 
 .btn {
@@ -36,4 +41,16 @@ body {
   border: 1px solid rgb(240, 99, 99);
   font-size: 1.4rem;
   transform: scale(0.99);
+}
+
+h1 {
+  margin-bottom: 0.75rem;
+}
+
+.title-page-one {
+  color: #f8f8f8;
+}
+
+.title-page-two {
+  color: #121221;
 }
