@@ -6,6 +6,8 @@ const settings = {
 
 const sketch = () => {
   return ({ context, width, height }) => {
+
+    // create sketch 
     context.fillStyle = '#282828';
     context.fillRect(0, 0, width, height);
     context.lineWidth = width * 0.005;
