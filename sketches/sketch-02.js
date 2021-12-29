@@ -1,67 +1,67 @@
 const canvasSketch = require('canvas-sketch');
 
 const settings = {
-  dimensions: [2048, 2048],
+  dimensions: [1080, 1080],
 };
+
+const degreesToRadius = (degrees) => (degrees / 180) * Math.PI;
+
+const randomRange = (min, max) => Math.random() * (max - min) + min;
 
 const sketch = () => {
   return ({ context, width, height }) => {
-    // creating new sketch
-    // background hotpink
-    context.fillStyle = '#f8f8f8';
+    context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
-    // draw a rectangle
+    // draw here
 
+    context.fillStyle = 'black';
+
+    const cx = width * 0.5;
+    const cy = height * 0.5;
+    const w = width * 0.003;
+    const h = height * 0.1;
+
+    let x, y;
+
+    const num = 12;
+    const radius = width * 0.3;
+
+    context.save();
     context.beginPath();
-    context.lineWidth = 40;
-    context.strokeStyle = '#000';
-    context.rect(512 + 256 -64, 512 + 256 -64, 1024, 1024);
-    context.stroke();
-     // draw on infront of the above one with fill
-    
-    context.beginPath();
-    context.fillStyle = '#fafafa';
-    context.fillRect(512, 512, 1024, 1024);
-    context.stroke();
 
-    context.beginPath();
-    context.lineWidth = 40;
-    context.strokeStyle = '#282828';
-    context.rect(1024 - 256, 1024 - 256, 512, 512);
-    context.stroke();
+    // Create a linear gradient
+    // The start gradient point is at x=cx, y=cy + 30
+    // The end gradient point is at x=cx * 0.5, y=cy * 0.75
+    var gradient = context.createLinearGradient(cx, cy + 25, cx, cy * 0.75);
 
-    for (let i = 0; i < 5; i++) {
+    // Add three color stops
+    gradient.addColorStop(0, 'hotpink');
+    gradient.addColorStop(0.5, 'orange');
+    gradient.addColorStop(1, 'tomato');
 
-      let x = (128 + 256) * i;
-      let y = (128 + 256) * i;
+    context.fillStyle = gradient;
+    context.arc(cx, cy, 100, 0, Math.PI * 2);
+    context.fill();
+    context.restore();
+
+    for (let i = 0; i < num; i++) {
+      const slice = degreesToRadius(360 / num);
+      const angle = slice * i;
+
+      x = cx + radius * Math.sin(angle);
+      y = cy + radius * Math.cos(angle);
+
+      context.save();
+      context.translate(x, y);
+      context.rotate(-angle);
+      context.scale(randomRange(1, 5), 2);
+      context.fillStyle = gradient;
       context.beginPath();
-      context.lineWidth = 5;
-      context.strokeStyle = '#282828';
-      context.arc(x + 256, y + 256, 256, 0, Math.PI * 2);
-      context.stroke(); 
-      
-      for (let j = 0; j < 5; j++) {
-        let x = (128 + 128) * i;
-        let y = (128 + 128) * j;
-        context.beginPath();
-        context.lineWidth = 5;
-        context.strokeStyle = '#282828';
-        context.arc(x + 1024, y + 1024, 256, 0, Math.PI * 2);
-        context.stroke();
-      }
-
-     
+      context.rect(-w * 0.5, -h * 0.5, w, h);
+      context.fill();
+      context.restore();
     }
-
-    // draw a white circle
-    context.beginPath();
-    context.strokeStyle = '#282828'
-    context.lineWidth = 80
-    context.arc(1024 + 512, 1024 + 512, 512 + 256, 0, Math.PI * 2);
-    /* context.fillStyle = '#fafafa';
-    context.fill(); */
-    context.stroke();
   };
 };
 
